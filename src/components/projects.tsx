@@ -1,16 +1,27 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, ExternalLink, FolderGit2 } from "lucide-react"
+import { Github, ExternalLink, FolderGit2, ImageIcon } from "lucide-react"
+import { ImageModal } from "@/components/image-modal"
 import Link from "next/link"
 
-const projects = [
+interface Project {
+    title: string
+    description: string
+    link?: string
+    githubName?: string
+    images?: string[]
+}
+
+const projects: Project[] = [
     {
         title: "SL Symposium Chatbot",
         description: "Gen AI chatbot (React + Gemini API + Node.js) for school event enquiry management.",
         link: "https://github.com/Arjundevjha/sl-chatbot",
         githubName: "sl-chatbot",
+        images: ["/certificates/SIL-app-demo.png", "/certificates/SIL-app-block-diagram.png"],
     },
     {
         title: "Full Stack App",
@@ -33,6 +44,7 @@ const projects = [
     {
         title: "Hawker Center Finder",
         description: "Community app for the elderly to find hawker centres. Created for the SWIFT Explorer challenge.",
+        images: ["/certificates/swift-app-demo.png"],
     },
     {
         title: "Mathematics Archive",
@@ -43,6 +55,17 @@ const projects = [
 ]
 
 export function Projects() {
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalImages, setModalImages] = useState<string[]>([])
+    const [modalTitle, setModalTitle] = useState("")
+
+    const handleViewImages = (project: Project) => {
+        if (!project.images || project.images.length === 0) return
+        setModalImages(project.images)
+        setModalTitle(project.title)
+        setModalOpen(true)
+    }
+
     return (
         <section id="projects" className="py-24">
             <div className="container px-4 mx-auto max-w-6xl">
@@ -73,11 +96,23 @@ export function Projects() {
                                 <CardHeader>
                                     <div className="flex justify-between items-start mb-4 text-primary">
                                         <FolderGit2 className="w-10 h-10 stroke-[1.5]" />
-                                        {project.link && (
-                                            <Link href={project.link} target="_blank" className="hover:text-foreground transition-colors">
-                                                <Github className="w-6 h-6" />
-                                            </Link>
-                                        )}
+                                        <div className="flex items-center gap-2">
+                                            {project.images && project.images.length > 0 && (
+                                                <button
+                                                    onClick={() => handleViewImages(project)}
+                                                    className="hover:text-foreground transition-colors"
+                                                    title="View demo"
+                                                    aria-label={`View ${project.title} demo images`}
+                                                >
+                                                    <ImageIcon className="w-5 h-5" />
+                                                </button>
+                                            )}
+                                            {project.link && (
+                                                <Link href={project.link} target="_blank" className="hover:text-foreground transition-colors">
+                                                    <Github className="w-6 h-6" />
+                                                </Link>
+                                            )}
+                                        </div>
                                     </div>
                                     <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                                         {project.title}
@@ -89,20 +124,36 @@ export function Projects() {
                                         {project.description}
                                     </p>
 
-                                    {project.link && (
-                                        <div className="mt-auto pt-4 border-t border-border/50 flex justify-start items-center">
+                                    <div className="mt-auto pt-4 border-t border-border/50 flex justify-start items-center gap-3">
+                                        {project.link && (
                                             <Link href={project.link} target="_blank" className="text-xs font-mono text-muted-foreground flex items-center gap-1 hover:text-primary transition-colors">
                                                 <ExternalLink className="w-3 h-3" />
                                                 {project.githubName}
                                             </Link>
-                                        </div>
-                                    )}
+                                        )}
+                                        {project.images && project.images.length > 0 && (
+                                            <button
+                                                onClick={() => handleViewImages(project)}
+                                                className="text-xs font-mono text-muted-foreground flex items-center gap-1 hover:text-primary transition-colors"
+                                            >
+                                                <ImageIcon className="w-3 h-3" />
+                                                View Demo
+                                            </button>
+                                        )}
+                                    </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
                     ))}
                 </div>
             </div>
+
+            <ImageModal
+                images={modalImages}
+                title={modalTitle}
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+            />
         </section>
     )
 }
