@@ -35,10 +35,6 @@ const projects = [
         description: "Community app for the elderly to find hawker centres. Created for the SWIFT Explorer challenge.",
     },
     {
-        title: "InsurTech AI Agent",
-        description: "Agentic AI architecture design for an insurance technology platform.",
-    },
-    {
         title: "Mathematics Archive",
         description: "Ongoing compendium of maths concepts & formulae encoded in software.",
         link: "https://github.com/Arjundevjha/Math",

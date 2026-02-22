@@ -13,13 +13,6 @@ const experiences = [
         reference: "Reference: Neena Bhalla, Director."
     },
     {
-        role: "Agentic AI Consultation",
-        company: "InsurTech Company",
-        date: "2024 - 2025",
-        icon: Lightbulb,
-        description: "Advised on AI agent architecture design for an insurance technology platform, focusing on enhancing user interactions and automation."
-    },
-    {
         role: "Web Penetration Test",
         company: "Baskit.app",
         date: "Mar 2023",

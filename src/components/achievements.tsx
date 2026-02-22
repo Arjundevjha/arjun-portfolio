@@ -13,7 +13,8 @@ const timeline = [
             "Singapore Junior Chemistry Olympiad",
             "STEM Challenge Merit Award",
             "Edusave Certificate of Academic Achievement",
-            "Bedok CCC Education Merit Award"
+            "Bedok CCC Education Merit Award",
+            "NOI December Training 2025"
         ]
     },
     {
@@ -22,6 +23,7 @@ const timeline = [
         items: [
             "World Robot Games Top 16 (International)",
             "SWIFT Explorer Merit Award (Finalist)",
+            "3D Printing Drone Airframe Cover Competition",
             "ISP 'B' Div Handball 3rd Place",
             "Edusave Good Progress Award & Academic Achievement",
             "Barclays Finance Club Programme"
@@ -33,6 +35,7 @@ const timeline = [
         items: [
             "SMO Junior Honourable Mention",
             "NRC CoderZ Top 8 Team & Top 5 Individual",
+            "Edusave Good Progress Award",
             "MIT Data Science & ML Certificate",
             "Full Stack Web Development Certificate"
         ]
@@ -41,6 +44,7 @@ const timeline = [
         year: "2022",
         icon: Award,
         items: [
+            "Siglap Edusave Awards Ceremony",
             "IIT Jodhpur Cybersecurity: Cyber Samurai Certificate",
             "IIT Jodhpur Cybersecurity: Cyber Guru Certificate"
         ]
@@ -83,10 +87,13 @@ export function Achievements() {
                                 </h3>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {block.items.map((item, idx) => (
-                                        <div key={idx} className="bg-card/30 border border-border/50 p-4 rounded-xl flex items-start gap-3 hover:border-primary/30 transition-colors">
+                                    {block.items.map((title, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="bg-card/30 border border-border/50 p-4 rounded-xl flex items-start gap-3 hover:border-primary/30 transition-all duration-300"
+                                        >
                                             <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0"></div>
-                                            <span className="text-foreground/90 font-medium leading-snug">{item}</span>
+                                            <span className="text-foreground/90 font-medium leading-snug">{title}</span>
                                         </div>
                                     ))}
                                 </div>
