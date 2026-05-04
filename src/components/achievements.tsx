@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Award, Target, Trophy, Medal } from "lucide-react"
+import { Award, Target, Trophy, Medal, Star } from "lucide-react"
 import { ImageModal } from "@/components/image-modal"
 
 interface AchievementItem {
@@ -11,6 +11,14 @@ interface AchievementItem {
 }
 
 const timeline: { year: string; icon: typeof Trophy; items: AchievementItem[] }[] = [
+    {
+        year: "2026",
+        icon: Star,
+        items: [
+            { title: "NOI Certificate of Participation", images: ["/certificates/NOI-2026-cert-participation.png"] },
+            { title: "Canadian Computing Competition (CCC) Certificate of Participation", images: ["/certificates/CCC-2026-cert-participation.png"] }
+        ]
+    },
     {
         year: "2025",
         icon: Trophy,
