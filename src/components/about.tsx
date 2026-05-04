@@ -30,7 +30,7 @@ export function About() {
                             My journey into technology began at age 7 with Lego EV3 robotics. What started as building simple mechanisms evolved into a deep, sustained passion for solving complex problems. Over the years, I&apos;ve expanded my horizons from block coding into <strong className="text-foreground">Full-Stack Development, Cybersecurity, and Artificial Intelligence</strong>.
                         </p>
                         <p>
-                            As a student at St. Hilda&apos;s Secondary School, I&apos;ve driven initiatives in the Infocomm (Robotics) Club and actively contributed to real-world freelance projects—from performing web penetration tests to architecting Gen AI chatbots using the Gemini API.
+                            Now a <strong className="text-foreground">JC1 student at Anderson Serangoon Junior College</strong>, I graduated from St. Hilda&apos;s Secondary School where I drove initiatives in the Infocomm (Robotics) Club and actively contributed to real-world freelance projects—from performing web penetration tests to architecting Gen AI chatbots using the Gemini API.
                         </p>
                         <p>
                             My core philosophy hinges on three pillars: <strong className="text-primary tracking-wide">Self-learning, Knowledge-sharing, and Community Impact</strong>. I believe that technology is a tool meant to empower people and bridge gaps in society.

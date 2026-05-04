@@ -60,7 +60,7 @@ export function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                    Student passionate about Infocomm, Robotics and AI. Building real-world tech since age 7.
+                    JC1 student at Anderson Serangoon Junior College, passionate about Infocomm, Robotics and AI. Building real-world tech since age 7.
                 </motion.p>
 
                 <motion.div
