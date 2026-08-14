@@ -113,16 +113,6 @@ export function Hero() {
                     </Link>
                 </motion.div>
             </div>
-
-            {/* Bottom Section Index Marker */}
-            <div className="container px-4 mx-auto max-w-5xl mt-16 pt-8 border-t border-[#1E222B]/60 flex items-center justify-between font-mono text-xs text-[#555B66]">
-                <div className="flex items-center gap-2">
-                    <span className="text-primary font-bold">01</span>
-                    <span>//</span>
-                    <span className="text-[#8A8F98]">PORTFOLIO_V2.0</span>
-                </div>
-                <div>SCROLL TO INSPECT ↓</div>
-            </div>
         </section>
     )
 }

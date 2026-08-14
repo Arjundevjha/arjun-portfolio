@@ -184,10 +184,10 @@ export function Currently() {
                         </div>
                         <div>
                             <div className="font-mono text-xs text-primary font-bold mb-1">
-                                [ SEEKING_COLLAB ]
+                                [ OPEN_SOURCE_CONTRIBUTIONS ]
                             </div>
                             <p className="text-xs text-[#8A8F98] leading-relaxed">
-                                Open to competitive informatics hackathons, applied ML engineering, and open-source software partnerships.
+                                Actively open to contributing to open-source initiatives, tooling repositories, and collaborative engineering in Artificial Intelligence and Cybersecurity.
                             </p>
                         </div>
                     </div>
