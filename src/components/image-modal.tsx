@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Terminal } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 
@@ -52,54 +52,58 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
                     onClick={onClose}
                 >
                     {/* Backdrop */}
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+                    <div className="absolute inset-0 bg-[#08090A]/90 backdrop-blur-md" />
 
-                    {/* Content */}
+                    {/* Content Frame */}
                     <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
+                        initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
+                        exit={{ scale: 0.95, opacity: 0 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="relative max-w-4xl w-full max-h-[85vh] flex flex-col items-center"
+                        className="relative max-w-4xl w-full max-h-[90vh] bg-[#0F1115] border border-[#1E222B] rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-2xl z-10"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Close button */}
-                        <button
-                            onClick={onClose}
-                            className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors z-10"
-                            aria-label="Close modal"
-                        >
-                            <X className="w-8 h-8" />
-                        </button>
+                        {/* Header Bar */}
+                        <div className="w-full flex items-center justify-between pb-4 mb-3 border-b border-[#1E222B]">
+                            <div className="flex items-center gap-2 font-mono text-xs text-[#8A8F98]">
+                                <Terminal className="w-3.5 h-3.5 text-primary" />
+                                <span className="text-[#F2F2F0] font-medium truncate max-w-[260px] sm:max-w-md">
+                                    {title}
+                                </span>
+                            </div>
 
-                        {/* Title */}
-                        <h3 className="text-white font-semibold text-lg mb-4 text-center px-4">
-                            {title}
-                        </h3>
+                            <button
+                                onClick={onClose}
+                                className="p-1.5 rounded-lg text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5 transition-colors"
+                                aria-label="Close modal"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
 
-                        {/* Image */}
-                        <div className="relative w-full flex items-center justify-center">
+                        {/* Image Viewer Container */}
+                        <div className="relative w-full flex items-center justify-center min-h-[300px] max-h-[68vh]">
                             {images.length > 1 && (
                                 <button
                                     onClick={handlePrev}
-                                    className="absolute left-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
-                                    aria-label="Previous image"
+                                    className="absolute left-2 z-20 bg-[#08090A]/80 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full p-2.5 transition-colors shadow-lg"
+                                    aria-label="Previous artifact"
                                 >
-                                    <ChevronLeft className="w-6 h-6" />
+                                    <ChevronLeft className="w-5 h-5" />
                                 </button>
                             )}
 
-                            <div className="relative w-full aspect-[4/3] max-h-[70vh]">
+                            <div className="relative w-full aspect-[4/3] max-h-[65vh]">
                                 <Image
                                     src={images[currentIndex]}
                                     alt={title}
                                     fill
                                     className="object-contain rounded-lg"
-                                    sizes="(max-width: 768px) 100vw, 800px"
+                                    sizes="(max-width: 768px) 100vw, 850px"
                                     priority
                                 />
                             </div>
@@ -107,30 +111,41 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                             {images.length > 1 && (
                                 <button
                                     onClick={handleNext}
-                                    className="absolute right-2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
-                                    aria-label="Next image"
+                                    className="absolute right-2 z-20 bg-[#08090A]/80 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full p-2.5 transition-colors shadow-lg"
+                                    aria-label="Next artifact"
                                 >
-                                    <ChevronRight className="w-6 h-6" />
+                                    <ChevronRight className="w-5 h-5" />
                                 </button>
                             )}
                         </div>
 
-                        {/* Pagination dots */}
-                        {images.length > 1 && (
-                            <div className="flex gap-2 mt-4">
-                                {images.map((_, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={() => setCurrentIndex(idx)}
-                                        className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex
-                                                ? "bg-white w-6"
-                                                : "bg-white/40 hover:bg-white/60"
-                                            }`}
-                                        aria-label={`Go to image ${idx + 1}`}
-                                    />
-                                ))}
+                        {/* Footer Indicator & Pagination */}
+                        <div className="w-full flex items-center justify-between pt-3 mt-2 border-t border-[#1E222B]/60 font-mono text-xs text-[#555B66]">
+                            <div className="hidden sm:block">
+                                KEYBOARD NAV: [ESC] CLOSE · [← / →] PREV/NEXT
                             </div>
-                        )}
+
+                            {images.length > 1 && (
+                                <div className="flex items-center gap-1.5 mx-auto sm:mx-0">
+                                    {images.map((_, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setCurrentIndex(idx)}
+                                            className={`h-1.5 rounded-full transition-all ${
+                                                idx === currentIndex
+                                                    ? "bg-primary w-5"
+                                                    : "bg-[#1E222B] hover:bg-[#8A8F98] w-2"
+                                            }`}
+                                            aria-label={`Go to slide ${idx + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+
+                            <div>
+                                {currentIndex + 1} / {images.length}
+                            </div>
+                        </div>
                     </motion.div>
                 </motion.div>
             )}

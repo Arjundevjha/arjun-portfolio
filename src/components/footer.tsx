@@ -1,39 +1,98 @@
-import { Github, Linkedin, Mail } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Github, Linkedin, Mail, ArrowUpRight, Copy, Check, Terminal } from "lucide-react"
 import Link from "next/link"
 
 export function Footer() {
-    return (
-        <footer id="contact" className="bg-background border-t border-border/50 py-12 md:py-16">
-            <div className="container px-4 mx-auto flex flex-col items-center justify-center text-center">
-                <h2 className="text-3xl font-bold mb-6 text-foreground">Get In Touch</h2>
-                <p className="text-muted-foreground mb-8 max-w-[500px]">
-                    Currently open to freelance opportunities, hackathons, and innovative projects. Let&apos;s build something amazing together.
-                </p>
+    const [copied, setCopied] = useState(false)
+    const email = "arjun.dev.jha@example.com"
 
-                <div className="flex items-center gap-6 mb-12">
-                    <Link href="https://github.com/Arjundevjha" target="_blank" className="p-3 rounded-full bg-secondary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-                        <Github className="w-6 h-6" />
-                        <span className="sr-only">GitHub</span>
-                    </Link>
-                    <Link href="https://www.linkedin.com/in/arjun-dev-jha/" target="_blank" className="p-3 rounded-full bg-secondary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-                        <Linkedin className="w-6 h-6" />
-                        <span className="sr-only">LinkedIn</span>
-                    </Link>
-                    <Link href="mailto:arjun.dev.jha@example.com" className="p-3 rounded-full bg-secondary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-                        <Mail className="w-6 h-6" />
-                        <span className="sr-only">Email</span>
-                    </Link>
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText(email)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+    }
+
+    return (
+        <footer id="contact" className="py-24 bg-[#08090A] relative overflow-hidden bg-grid-tech">
+            <div className="container px-4 mx-auto max-w-5xl">
+                {/* Section Index */}
+                <div className="flex items-center justify-between mb-12">
+                    <div className="flex items-center gap-3">
+                        <span className="font-mono text-xs text-primary font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
+                            07
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
+                            Connect & Collaborate
+                        </h2>
+                    </div>
+                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                        CONTACT // TERMINAL
+                    </span>
                 </div>
 
-                <div className="w-full max-w-[400px] h-[1px] bg-border mb-8"></div>
+                {/* Main Contact Container */}
+                <div className="bg-[#0F1115] border border-[#1E222B] rounded-3xl p-8 sm:p-12 relative">
+                    <div className="max-w-2xl space-y-6">
+                        {/* Live Status Pill */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#14171F] border border-[#1E222B] font-mono text-xs text-[#8A8F98]">
+                            <span className="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                            <span className="text-[#F2F2F0]">Available for Hackathons, Research & Builds</span>
+                        </div>
 
-                <blockquote className="text-xl italic font-medium text-primary mb-4 select-none">
-                    &quot;Knowledge belongs to the world.&quot;
-                </blockquote>
+                        <h3 className="text-3xl sm:text-5xl font-black text-[#F2F2F0] tracking-tight">
+                            Let&apos;s build something <br />
+                            <span className="text-primary">extraordinary.</span>
+                        </h3>
 
-                <p className="text-sm text-muted-foreground mt-4">
-                    © {new Date().getFullYear()} Arjun Dev Jha. Built with Next.js & Tailwind CSS.
-                </p>
+                        <p className="text-sm sm:text-base text-[#8A8F98] leading-relaxed">
+                            Always eager to collaborate on competitive programming, AI agents, security audits, or applied engineering projects.
+                        </p>
+
+                        {/* Direct Channel Actions */}
+                        <div className="flex flex-wrap items-center gap-3 pt-4">
+                            <Link
+                                href="https://github.com/Arjundevjha"
+                                target="_blank"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors"
+                            >
+                                <Github className="w-4 h-4 text-primary" />
+                                <span>github.com/Arjundevjha</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-[#8A8F98]" />
+                            </Link>
+
+                            <Link
+                                href="https://www.linkedin.com/in/arjun-dev-jha/"
+                                target="_blank"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors"
+                            >
+                                <Linkedin className="w-4 h-4 text-primary" />
+                                <span>LinkedIn Profile</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-[#8A8F98]" />
+                            </Link>
+
+                            <button
+                                onClick={handleCopyEmail}
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-[#08090A] font-semibold text-xs hover:bg-primary/90 transition-colors"
+                            >
+                                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                                <span>{copied ? "Email Copied!" : "Copy Direct Email"}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Bottom Metadata Bar */}
+                    <div className="mt-12 pt-8 border-t border-[#1E222B]/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#555B66]">
+                        <div className="flex items-center gap-2">
+                            <Terminal className="w-3.5 h-3.5 text-primary" />
+                            <span>ARJUN DEV JHA · SINGAPORE (UTC+8)</span>
+                        </div>
+                        <div>
+                            DESIGNED FOR ARJUN&apos;S ENGINEERING LAB · {new Date().getFullYear()}
+                        </div>
+                    </div>
+                </div>
             </div>
         </footer>
     )

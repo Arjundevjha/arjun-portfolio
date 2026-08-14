@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Arjun Dev Jha | Portfolio",
-  description: "Portfolio of Arjun Dev Jha — JC1 student at Anderson Serangoon Junior College. Robotics Engineer, Full Stack Developer, Cybersecurity Researcher & AI Builder.",
+  title: "Arjun Dev Jha | Engineering Lab & Portfolio",
+  description: "Arjun Dev Jha — JC1 student at Anderson Serangoon Junior College. Student engineer exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.",
 };
 
 export default function RootLayout({

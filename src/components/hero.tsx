@@ -1,103 +1,128 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Github, Linkedin, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
+import { ArrowDown, ArrowUpRight, Terminal, Sparkles, Shield, Cpu, Code2 } from "lucide-react"
 import Link from "next/link"
 
-const taglines = [
-    "Robotics Engineer",
-    "Full Stack Developer",
-    "Cybersecurity Researcher",
-    "AI Builder"
+const domains = [
+    { label: "Software Systems", icon: Code2 },
+    { label: "Generative AI", icon: Sparkles },
+    { label: "Cybersecurity", icon: Shield },
+    { label: "Robotics & Hardware", icon: Cpu },
 ]
 
 export function Hero() {
-    const [currentTagline, setCurrentTagline] = useState(0)
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentTagline((prev) => (prev + 1) % taglines.length)
-        }, 3000)
-        return () => clearInterval(interval)
-    }, [])
-
     return (
-        <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
-            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-            <div className="absolute left-1/2 top-1/2 -z-10 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 opacity-30 blur-[100px]"></div>
+        <section id="home" className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-grid-tech">
+            {/* Subtle engineering coordinate marks */}
+            <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#555B66] tracking-widest uppercase select-none">
+                <span className="text-primary font-bold">●</span>
+                <span>SYS_COORD: 1.3521° N, 103.8198° E</span>
+                <span>//</span>
+                <span>SINGAPORE</span>
+            </div>
 
-            <div className="container px-4 z-10 flex flex-col items-center text-center">
+            <div className="absolute top-24 right-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#555B66] tracking-widest uppercase select-none">
+                <span>STAGE: JC1 (ASRJC)</span>
+                <span>//</span>
+                <span className="text-[#8A8F98]">BUILDING SINCE AGE 7</span>
+            </div>
+
+            <div className="container px-4 mx-auto max-w-5xl relative z-10">
+                {/* Monospace Eyebrow */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex items-center gap-3 mb-6"
+                >
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#14171F] border border-[#1E222B] font-mono text-xs text-[#8A8F98]">
+                        <Terminal className="w-3.5 h-3.5 text-primary" />
+                        <span className="text-[#F2F2F0] font-medium">ARJUN DEV JHA</span>
+                        <span className="text-[#555B66]">/</span>
+                        <span className="text-primary">STUDENT ENGINEER</span>
+                    </div>
+                </motion.div>
+
+                {/* Main Headline */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="mb-8"
                 >
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 text-foreground">
-                        Arjun Dev Jha
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#F2F2F0] leading-[1.08] max-w-4xl">
+                        I build things that <br className="hidden sm:inline" />
+                        make me <span className="text-primary">curious.</span>
                     </h1>
                 </motion.div>
 
-                <div className="h-12 md:h-16 mb-6 flex items-center">
-                    <AnimatePresence mode="wait">
-                        <motion.h2
-                            key={currentTagline}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-2xl md:text-4xl font-semibold bg-gradient-to-r from-primary via-blue-400 to-secondary bg-clip-text text-transparent"
-                        >
-                            {taglines[currentTagline]}
-                        </motion.h2>
-                    </AnimatePresence>
-                </div>
-
-                <motion.p
-                    className="text-lg md:text-xl text-muted-foreground max-w-[600px] mb-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                >
-                    JC1 student at Anderson Serangoon Junior College, passionate about Infocomm, Robotics and AI. Building real-world tech since age 7.
-                </motion.p>
-
+                {/* Core Domains */}
                 <motion.div
-                    className="flex flex-col sm:flex-row items-center gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="flex flex-wrap gap-2 sm:gap-3 mb-8"
                 >
-                    <Button asChild size="lg" className="rounded-full px-8 text-primary-foreground font-semibold hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all">
-                        <Link href="#projects">View Projects</Link>
-                    </Button>
-                    <div className="flex items-center gap-4">
-                        <Button asChild variant="outline" size="icon" className="rounded-full border-primary/30 hover:bg-primary/10 hover:border-primary text-foreground hover:text-primary transition-colors">
-                            <Link href="https://github.com/Arjundevjha" target="_blank">
-                                <Github className="h-5 w-5" />
-                                <span className="sr-only">GitHub</span>
-                            </Link>
-                        </Button>
-                        <Button asChild variant="outline" size="icon" className="rounded-full border-primary/30 hover:bg-primary/10 hover:border-primary text-foreground hover:text-primary transition-colors">
-                            <Link href="https://www.linkedin.com/in/arjun-dev-jha/" target="_blank">
-                                <Linkedin className="h-5 w-5" />
-                                <span className="sr-only">LinkedIn</span>
-                            </Link>
-                        </Button>
-                    </div>
+                    {domains.map((item, idx) => {
+                        const Icon = item.icon
+                        return (
+                            <div
+                                key={idx}
+                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0F1115] border border-[#1E222B] text-xs font-mono text-[#8A8F98] hover:text-[#F2F2F0] hover:border-primary/40 transition-colors"
+                            >
+                                <Icon className="w-3.5 h-3.5 text-primary" />
+                                <span>{item.label}</span>
+                            </div>
+                        )
+                    })}
+                </motion.div>
+
+                {/* Subtext Narrative */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="text-base sm:text-lg text-[#8A8F98] max-w-2xl leading-relaxed mb-10"
+                >
+                    JC1 student at Anderson Serangoon Junior College. Exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.
+                </motion.p>
+
+                {/* CTAs */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="flex flex-wrap items-center gap-4"
+                >
+                    <Link
+                        href="#work"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-[#08090A] font-semibold text-sm hover:bg-primary/90 hover:shadow-[0_0_24px_rgba(183,255,60,0.35)] transition-all duration-200"
+                    >
+                        <span>Explore Selected Work</span>
+                        <ArrowDown className="w-4 h-4" />
+                    </Link>
+
+                    <Link
+                        href="https://github.com/Arjundevjha"
+                        target="_blank"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0F1115] hover:bg-[#14171F] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] text-sm font-mono transition-all duration-200"
+                    >
+                        <span>GitHub Archive</span>
+                        <ArrowUpRight className="w-4 h-4 text-primary" />
+                    </Link>
                 </motion.div>
             </div>
 
-            <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-            >
-                <Link href="#about" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Scroll to about section">
-                    <ChevronDown className="h-8 w-8" />
-                </Link>
-            </motion.div>
+            {/* Bottom Section Index Marker */}
+            <div className="container px-4 mx-auto max-w-5xl mt-16 pt-8 border-t border-[#1E222B]/60 flex items-center justify-between font-mono text-xs text-[#555B66]">
+                <div className="flex items-center gap-2">
+                    <span className="text-primary font-bold">01</span>
+                    <span>//</span>
+                    <span className="text-[#8A8F98]">PORTFOLIO_V2.0</span>
+                </div>
+                <div>SCROLL TO INSPECT ↓</div>
+            </div>
         </section>
     )
 }
