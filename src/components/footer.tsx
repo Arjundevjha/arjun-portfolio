@@ -21,7 +21,7 @@ export function Footer() {
                 <div className="flex items-center justify-between mb-12">
                     <div className="flex items-center gap-3">
                         <span className="font-mono text-xs text-primary font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                            07
+                            06
                         </span>
                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
                             Connect & Collaborate
