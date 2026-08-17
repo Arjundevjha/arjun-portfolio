@@ -209,7 +209,7 @@ export function Journey() {
             : timelineData.filter((t) => t.year === selectedYear)
 
     return (
-        <section id="journey" className="py-24 border-b border-[#1E222B]/60 relative">
+        <section id="achievements" className="py-24 border-b border-[#1E222B]/60 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
@@ -218,7 +218,7 @@ export function Journey() {
                             05
                         </span>
                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
-                            Evolutionary Journey & Archive
+                            Achievements
                         </h2>
                     </div>
 
@@ -257,13 +257,10 @@ export function Journey() {
                             </div>
 
                             {/* Year Header */}
-                            <div className="flex items-center gap-3 mb-6">
+                            <div className="mb-6">
                                 <h3 className="text-2xl sm:text-3xl font-mono font-black text-[#F2F2F0]">
                                     {block.year}
                                 </h3>
-                                <span className="font-mono text-[10px] px-2.5 py-0.5 rounded bg-[#14171F] border border-[#1E222B] text-primary font-medium">
-                                    {block.tag}
-                                </span>
                             </div>
 
                             {/* Milestones in this year */}
