@@ -15,14 +15,14 @@ export function Hero() {
     return (
         <section id="home" className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-grid-tech">
             {/* Subtle engineering coordinate marks */}
-            <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#555B66] tracking-widest uppercase select-none">
+            <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#7E8492] tracking-widest uppercase select-none">
                 <span className="text-primary font-bold">●</span>
                 <span>SYS_COORD: 1.3521° N, 103.8198° E</span>
                 <span>//</span>
                 <span>SINGAPORE</span>
             </div>
 
-            <div className="absolute top-24 right-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#555B66] tracking-widest uppercase select-none">
+            <div className="absolute top-24 right-8 hidden lg:flex items-center gap-2 font-mono text-[10px] text-[#7E8492] tracking-widest uppercase select-none">
                 <span>STAGE: JC1 (ASRJC)</span>
                 <span>//</span>
                 <span className="text-[#8A8F98]">BUILDING SINCE AGE 7</span>
@@ -39,7 +39,7 @@ export function Hero() {
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#14171F] border border-[#1E222B] font-mono text-xs text-[#8A8F98]">
                         <Terminal className="w-3.5 h-3.5 text-primary" />
                         <span className="text-[#F2F2F0] font-medium">ARJUN DEV JHA</span>
-                        <span className="text-[#555B66]">/</span>
+                        <span className="text-[#7E8492]">/</span>
                         <span className="text-primary">STUDENT ENGINEER</span>
                     </div>
                 </motion.div>

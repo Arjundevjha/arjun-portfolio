@@ -25,7 +25,7 @@ export function About() {
                             About & Engineering Narrative
                         </h2>
                     </div>
-                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                    <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
                         ORIGIN // TRAJECTORY
                     </span>
                 </div>
@@ -35,7 +35,7 @@ export function About() {
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                         transition={{ duration: 0.4 }}
                         className="lg:col-span-7 space-y-6"
                     >
@@ -80,7 +80,7 @@ export function About() {
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                         transition={{ duration: 0.4, delay: 0.2 }}
                         className="lg:col-span-5 bg-[#0F1115] border border-[#1E222B] p-6 sm:p-7 rounded-2xl"
                     >
@@ -103,7 +103,7 @@ export function About() {
                                         </div>
                                     </div>
                                     {idx < trajectory.length - 1 && (
-                                        <div className="flex justify-center py-1 text-[#555B66]">
+                                        <div className="flex justify-center py-1 text-[#7E8492]">
                                             <ArrowDown className="w-3.5 h-3.5 text-primary/60" />
                                         </div>
                                     )}

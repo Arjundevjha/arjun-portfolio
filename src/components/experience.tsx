@@ -50,7 +50,7 @@ export function Experience() {
                             Industry Experience & Case Studies
                         </h2>
                     </div>
-                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                    <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
                         EVIDENCE // VERIFIED WORK
                     </span>
                 </div>
@@ -64,7 +64,7 @@ export function Experience() {
                                 key={idx}
                                 initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                                 className="bg-[#0F1115] border border-[#1E222B] hover:border-primary/40 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors group"
                             >
@@ -114,7 +114,7 @@ export function Experience() {
 
                                     {/* Outcomes */}
                                     <div className="space-y-1.5 pt-2">
-                                        <div className="font-mono text-[10px] text-[#555B66] uppercase tracking-wider">
+                                        <div className="font-mono text-[10px] text-[#7E8492] uppercase tracking-wider">
                                             Key Outcomes & Deliverables:
                                         </div>
                                         {item.outcomes.map((outcome, oIdx) => (

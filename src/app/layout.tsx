@@ -16,7 +16,37 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Arjun Dev Jha | Engineering Lab & Portfolio",
-  description: "Arjun Dev Jha — JC1 student at Anderson Serangoon Junior College. Student engineer exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.",
+  description: "Arjun Dev Jha — JC1 student at Anderson Serangoon Junior College (Singapore). Student engineer exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.",
+  keywords: [
+    "Arjun Dev Jha",
+    "Student Engineer",
+    "Anderson Serangoon Junior College",
+    "ASRJC",
+    "Artificial Intelligence",
+    "Cybersecurity",
+    "Robotics",
+    "Singapore",
+    "Gemini API",
+    "Full-Stack Developer",
+  ],
+  authors: [{ name: "Arjun Dev Jha", url: "https://github.com/Arjundevjha" }],
+  creator: "Arjun Dev Jha",
+  openGraph: {
+    title: "Arjun Dev Jha | Engineering Lab & Portfolio",
+    description: "JC1 student engineer exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.",
+    type: "website",
+    locale: "en_SG",
+    siteName: "Arjun Dev Jha Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arjun Dev Jha | Engineering Lab & Portfolio",
+    description: "JC1 student engineer exploring intelligent agentic systems, applied cybersecurity, algorithmic robotics, and full-stack software.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -222,16 +222,16 @@ export function Journey() {
                         </h2>
                     </div>
 
-                    {/* Quick Year Filters */}
-                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#0F1115] border border-[#1E222B]">
+                    {/* Quick Year Filters with Touch-Friendly Hitboxes */}
+                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#0F1115] border border-[#1E222B] overflow-x-auto max-w-full">
                         {["ALL", "2026", "2025", "2024", "2023", "2022"].map((yr) => (
                             <button
                                 key={yr}
                                 onClick={() => setSelectedYear(yr)}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+                                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                                     selectedYear === yr
-                                        ? "bg-primary text-[#08090A] font-bold"
-                                        : "text-[#8A8F98] hover:text-[#F2F2F0]"
+                                        ? "bg-primary text-[#08090A] font-bold shadow-sm"
+                                        : "text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5"
                                 }`}
                             >
                                 {yr}
@@ -247,7 +247,7 @@ export function Journey() {
                             key={block.year}
                             initial={{ opacity: 0, x: -15 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                             transition={{ duration: 0.4, delay: bIdx * 0.1 }}
                             className="relative"
                         >
@@ -261,7 +261,7 @@ export function Journey() {
                                 <h3 className="text-2xl sm:text-3xl font-mono font-black text-[#F2F2F0]">
                                     {block.year}
                                 </h3>
-                                <span className="font-mono text-[10px] px-2.5 py-0.5 rounded bg-[#14171F] border border-[#1E222B] text-primary">
+                                <span className="font-mono text-[10px] px-2.5 py-0.5 rounded bg-[#14171F] border border-[#1E222B] text-primary font-medium">
                                     {block.tag}
                                 </span>
                             </div>
@@ -273,16 +273,25 @@ export function Journey() {
                                     return (
                                         <div
                                             key={mIdx}
+                                            role={hasCert ? "button" : undefined}
+                                            tabIndex={hasCert ? 0 : undefined}
+                                            aria-label={hasCert ? `View certificate for ${item.title}` : undefined}
+                                            onKeyDown={(e) => {
+                                                if (hasCert && (e.key === "Enter" || e.key === " ")) {
+                                                    e.preventDefault()
+                                                    handleViewCert(item)
+                                                }
+                                            }}
                                             onClick={() => hasCert && handleViewCert(item)}
-                                            className={`bg-[#0F1115] border border-[#1E222B] p-5 rounded-xl flex flex-col justify-between transition-all ${
+                                            className={`bg-[#0F1115] border border-[#1E222B] p-5 rounded-xl flex flex-col justify-between transition-all text-left ${
                                                 hasCert
-                                                    ? "cursor-pointer hover:border-primary/50 hover:bg-[#14171F] group"
+                                                    ? "cursor-pointer hover:border-primary/50 hover:bg-[#14171F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary group"
                                                     : ""
                                             } ${item.highlight ? "ring-1 ring-primary/20" : ""}`}
                                         >
                                             <div>
                                                 <div className="flex items-center justify-between mb-2">
-                                                    <span className="font-mono text-[10px] text-[#555B66] uppercase">
+                                                    <span className="font-mono text-[10px] text-[#7E8492] uppercase">
                                                         {item.category}
                                                     </span>
                                                     {hasCert && (

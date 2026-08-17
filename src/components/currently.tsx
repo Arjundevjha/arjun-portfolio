@@ -28,7 +28,7 @@ export function Currently() {
                             Currently & Academic Foundation
                         </h2>
                     </div>
-                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                    <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
                         LIVE_STATUS: ACTIVE
                     </span>
                 </div>
@@ -39,7 +39,7 @@ export function Currently() {
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                         transition={{ duration: 0.4 }}
                         className="bg-[#0F1115] border border-[#1E222B] hover:border-primary/40 p-6 sm:p-7 rounded-2xl relative group transition-colors"
                     >
@@ -84,7 +84,7 @@ export function Currently() {
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                         transition={{ duration: 0.4, delay: 0.1 }}
                         className="bg-[#0F1115] border border-[#1E222B] hover:border-primary/40 p-6 sm:p-7 rounded-2xl relative group transition-colors"
                     >

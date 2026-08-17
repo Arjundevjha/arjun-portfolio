@@ -78,7 +78,7 @@ export function Capabilities() {
                             Engineering Capabilities
                         </h2>
                     </div>
-                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                    <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
                         DOMAINS // 04 AREAS
                     </span>
                 </div>
@@ -92,7 +92,7 @@ export function Capabilities() {
                                 key={idx}
                                 initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
                                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                                 className="bg-[#0F1115] border border-[#1E222B] hover:border-primary/40 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-colors group"
                             >
@@ -106,7 +106,7 @@ export function Capabilities() {
                                                 {item.domain}
                                             </h3>
                                         </div>
-                                        <span className="font-mono text-xs text-[#555B66]">
+                                        <span className="font-mono text-xs text-[#7E8492]">
                                             {item.number}
                                         </span>
                                     </div>
@@ -117,7 +117,7 @@ export function Capabilities() {
                                 </div>
 
                                 <div className="pt-4 border-t border-[#1E222B]/60">
-                                    <div className="font-mono text-[10px] text-[#555B66] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                                    <div className="font-mono text-[10px] text-[#7E8492] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                                         <Layers className="w-3 h-3 text-primary" />
                                         <span>Core Stack & Methodologies</span>
                                     </div>

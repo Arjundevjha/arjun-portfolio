@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function Footer() {
     const [copied, setCopied] = useState(false)
-    const email = "arjun.dev.jha@example.com"
+    const email = "arjundevjha111@gmail.com"
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText(email)
@@ -27,7 +27,7 @@ export function Footer() {
                             Connect & Collaborate
                         </h2>
                     </div>
-                    <span className="hidden sm:inline font-mono text-xs text-[#555B66]">
+                    <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
                         CONTACT // TERMINAL
                     </span>
                 </div>
@@ -52,10 +52,19 @@ export function Footer() {
 
                         {/* Direct Channel Actions */}
                         <div className="flex flex-wrap items-center gap-3 pt-4">
+                            <a
+                                href={`mailto:${email}`}
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            >
+                                <Mail className="w-4 h-4 text-primary" />
+                                <span>{email}</span>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-[#8A8F98]" />
+                            </a>
+
                             <Link
                                 href="https://github.com/Arjundevjha"
                                 target="_blank"
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 <Github className="w-4 h-4 text-primary" />
                                 <span>github.com/Arjundevjha</span>
@@ -65,7 +74,7 @@ export function Footer() {
                             <Link
                                 href="https://www.linkedin.com/in/arjun-dev-jha/"
                                 target="_blank"
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#14171F] hover:bg-[#1A1E27] border border-[#1E222B] hover:border-primary/50 text-[#F2F2F0] font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 <Linkedin className="w-4 h-4 text-primary" />
                                 <span>LinkedIn Profile</span>
@@ -74,16 +83,16 @@ export function Footer() {
 
                             <button
                                 onClick={handleCopyEmail}
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-[#08090A] font-semibold text-xs hover:bg-primary/90 transition-colors"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-[#08090A] font-semibold text-xs hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                                <span>{copied ? "Email Copied!" : "Copy Direct Email"}</span>
+                                <span>{copied ? "Email Copied!" : "Copy Email"}</span>
                             </button>
                         </div>
                     </div>
 
                     {/* Bottom Metadata Bar */}
-                    <div className="mt-12 pt-8 border-t border-[#1E222B]/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#555B66]">
+                    <div className="mt-12 pt-8 border-t border-[#1E222B]/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#7E8492]">
                         <div className="flex items-center gap-2">
                             <Terminal className="w-3.5 h-3.5 text-primary" />
                             <span>ARJUN DEV JHA · SINGAPORE (UTC+8)</span>
