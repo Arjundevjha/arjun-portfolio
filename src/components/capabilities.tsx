@@ -42,6 +42,7 @@ const capabilities = [
         technologies: [
             "Web Penetration Testing",
             "Vulnerability Assessment",
+            "Sentinel CTF (2nd Runner-Up)",
             "Classical & Modern Crypto",
             "Shell & Python Payloads",
             "OWASP Top 10",

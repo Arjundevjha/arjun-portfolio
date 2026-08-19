@@ -1,16 +1,15 @@
 # Session Handoff Document
 
 ## 1. Executive Summary
-- **Section 05 Renamed to Achievements**:
-  - Renamed section title to **`Achievements`** and updated section id to `achievements` in [`src/components/journey.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/journey.tsx).
-  - Removed all comment tags/badges (`{block.tag}`) next to the year headers (`2026`, `2025`, `2024`, `2023`, `2022`) for a cleaner presentation.
-  - Updated navbar link to **`Achievements`** (`#achievements`) in [`src/components/navbar.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/navbar.tsx).
-- **Section 06 (About & Narrative) Removed**:
-  - Removed `<About />` component and import from [`src/app/page.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/app/page.tsx).
-  - Re-indexed the Connect & Collaborate section index badge from `07` to **`06`** in [`src/components/footer.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/footer.tsx).
-- **Contact Channel Configured**: Direct contact email is configured as **`arjundevjha111@gmail.com`** with direct `mailto:` action link and one-click clipboard copy functionality in [`src/components/footer.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/footer.tsx).
-- **Mobile Navigation Polish**: Fixed backdrop blur overlay (`bg-[#08090A]/80 backdrop-blur-md`) and automatic body scroll locking (`document.body.style.overflow = "hidden"`) when mobile drawer is open in [`src/components/navbar.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/navbar.tsx).
-- **Modal Framing & Visual Polish**: Light NUS certificates and diagrams are wrapped in a dark matte bezel container (`bg-[#14171F] p-2 rounded-xl border border-[#1E222B]`), with increased backdrop blur (`bg-[#08090A]/95 backdrop-blur-lg`) and repositioned floating navigation chevrons in [`src/components/image-modal.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/image-modal.tsx).
+- **Sentinel Cyber Sports Day CTF 2026 Certificate Added**:
+  - Imported certificate image to [`public/certificates/Sentinel-Cyber-Sports-Day-CTF-Challenge-2026.png`](file:///Users/abc/Desktop/arjun-portfolio/public/certificates/Sentinel-Cyber-Sports-Day-CTF-Challenge-2026.png).
+  - Integrated Sentinel Cyber Sports Day CTF Challenge 2026 milestone (2nd Runner-Up Team / 3rd Place) under **2026** in [`src/components/journey.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/journey.tsx) with interactive modal certificate inspection.
+  - Added Sentinel CTF to the **SECURITY** projects filter and showcase list in [`src/components/projects.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/projects.tsx).
+  - Highlighted Sentinel CTF in the **Cybersecurity & Pentesting** capabilities stack in [`src/components/capabilities.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/capabilities.tsx).
+- **Section Structure & Flow**:
+  - Section 05 is **`Achievements`** with year filters (`2026`, `2025`, `2024`, `2023`, `2022`).
+  - Direct contact email configured as **`arjundevjha111@gmail.com`** with direct `mailto:` action link and one-click clipboard copy in [`src/components/footer.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/footer.tsx).
+  - Certificate & diagram modal has dark matte bezel containers with smooth keyboard navigation (`[ESC]`, `[←]`, `[→]`).
 
 ---
 
@@ -25,9 +24,9 @@
   7. `Connect & Collaborate` (06)
 - **Build Status**: `npm run build` passing with 0 errors (static page generation 4/4).
 - **TypeScript**: `npx tsc --noEmit` passing with 0 errors.
-- **Git State**: Clean working tree; `main` branch synced and up to date with `origin/main` (`git push` completed).
+- **Image Assets**: 24+ high-resolution certificates & diagrams under [`public/certificates/`](file:///Users/abc/Desktop/arjun-portfolio/public/certificates).
 
 ---
 
 ## 3. Deployment & Release Readiness
-- Codebase is fully synchronized and ready for production deployment (e.g. Vercel, Netlify, or custom hosting).
+- Codebase is fully synchronized, optimized, and ready for production deployment.

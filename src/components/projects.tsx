@@ -49,6 +49,15 @@ const projects: Project[] = [
     },
     {
         id: "03",
+        title: "Sentinel Cyber Sports Day CTF",
+        category: "SECURITY",
+        badge: "National 2nd Runner-Up",
+        description: "National CTF challenge organized by the Digital and Intelligence Service (DIS). Solved advanced web security, reverse engineering, binary analysis, and cryptography challenges.",
+        tags: ["CTF", "Cybersecurity", "Cryptography", "Web Security", "DIS / MINDEF"],
+        images: ["/certificates/Sentinel-Cyber-Sports-Day-CTF-Challenge-2026.png"],
+    },
+    {
+        id: "04",
         title: "Full Stack Product Tool",
         category: "FULL STACK",
         badge: "Full Stack Architecture",
@@ -58,7 +67,7 @@ const projects: Project[] = [
         tags: ["TypeScript", "Node.js", "Express", "Database", "React"],
     },
     {
-        id: "04",
+        id: "05",
         title: "MIT Machine Learning Practicals",
         category: "AI & ML",
         badge: "ML Curriculum Practicals",
@@ -68,7 +77,7 @@ const projects: Project[] = [
         tags: ["Python", "Scikit-Learn", "Data Science", "Pandas", "NumPy"],
     },
     {
-        id: "05",
+        id: "06",
         title: "Hawker Centre Finder",
         category: "FULL STACK",
         badge: "Community Swift App",
@@ -77,7 +86,7 @@ const projects: Project[] = [
         images: ["/certificates/swift-app-demo.png"],
     },
     {
-        id: "06",
+        id: "07",
         title: "Mathematics & Algorithmic Archive",
         category: "MATH & ROBOTICS",
         badge: "Algorithmic Archive",

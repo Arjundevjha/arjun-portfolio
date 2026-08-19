@@ -25,6 +25,14 @@ const timelineData: {
         milestones: [
             {
                 year: "2026",
+                title: "Sentinel Cyber Sports Day CTF Challenge (2nd Runner-Up)",
+                category: "Cybersecurity & CTF",
+                description: "2nd Runner-Up team (3rd place) in the national Sentinel Cyber Sports Day CTF Challenge 2026 organized by the Digital and Intelligence Service (DIS) / MINDEF.",
+                highlight: true,
+                images: ["/certificates/Sentinel-Cyber-Sports-Day-CTF-Challenge-2026.png"],
+            },
+            {
+                year: "2026",
                 title: "National Olympiad in Informatics (NOI)",
                 category: "Competitive Programming",
                 description: "National algorithmic programming competition solving advanced graph theory and dynamic programming challenges.",
