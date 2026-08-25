@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Code, Sparkles, Shield, Cpu, Terminal, Layers } from "lucide-react"
 
-const capabilities = [
+const skills = [
     {
         number: "01",
         domain: "Software & Systems",
@@ -67,26 +67,26 @@ const capabilities = [
 
 export function Capabilities() {
     return (
-        <section id="capabilities" className="py-16 sm:py-24 border-b border-[#1E222B]/60 relative">
+        <section id="skills" className="py-16 sm:py-24 border-b border-[#1E222B]/60 scroll-mt-20 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Section Header */}
                 <div className="flex items-center justify-between mb-8 sm:mb-12">
                     <div className="flex items-center gap-2.5 sm:gap-3">
                         <span className="font-mono text-xs text-primary font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                            03
+                            02
                         </span>
                         <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
-                            Engineering Capabilities
+                            Skills
                         </h2>
                     </div>
                     <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
-                        DOMAINS // 04 AREAS
+                        SKILLS // 04 DOMAINS
                     </span>
                 </div>
 
-                {/* 4 Structured Capability Blocks */}
+                {/* 4 Structured Skill Blocks */}
                 <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                    {capabilities.map((item, idx) => {
+                    {skills.map((item, idx) => {
                         const Icon = item.icon
                         return (
                             <motion.div

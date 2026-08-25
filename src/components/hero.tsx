@@ -52,8 +52,8 @@ export function Hero() {
                     className="mb-6 sm:mb-8"
                 >
                     <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#F2F2F0] leading-[1.12] sm:leading-[1.08] max-w-4xl text-balance">
-                        I build things that <br className="hidden sm:inline" />
-                        make me <span className="text-primary">curious.</span>
+                        Whatever knowledge I have, <br className="hidden sm:inline" />
+                        belongs to the <span className="text-primary">world.</span>
                     </h1>
                 </motion.div>
 
@@ -96,10 +96,14 @@ export function Hero() {
                     className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 max-w-md sm:max-w-none"
                 >
                     <Link
-                        href="#work"
+                        href="#projects"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+                        }}
                         className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-xl bg-primary text-[#08090A] font-semibold text-sm hover:bg-primary/90 hover:shadow-[0_0_24px_rgba(183,255,60,0.35)] transition-all duration-200 min-h-[48px]"
                     >
-                        <span>Explore Selected Work</span>
+                        <span>Explore Projects</span>
                         <ArrowDown className="w-4 h-4" />
                     </Link>
 

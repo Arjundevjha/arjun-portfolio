@@ -15,7 +15,7 @@ export function Footer() {
     }
 
     return (
-        <footer id="contact" className="py-16 sm:py-24 bg-[#08090A] relative overflow-hidden bg-grid-tech">
+        <footer id="contact" className="py-16 sm:py-24 bg-[#08090A] relative overflow-hidden bg-grid-tech scroll-mt-20">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Section Index */}
                 <div className="flex items-center justify-between mb-8 sm:mb-12">

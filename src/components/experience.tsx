@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Building2, Calendar, ShieldCheck, BrainCircuit, CheckCircle, Quote } from "lucide-react"
 
-const caseStudies = [
+const experiences = [
     {
         date: "05.2025",
         role: "AI Application Developer",
@@ -38,7 +38,7 @@ const caseStudies = [
 
 export function Experience() {
     return (
-        <section id="experience" className="py-16 sm:py-24 border-b border-[#1E222B]/60 relative">
+        <section id="experience" className="py-16 sm:py-24 border-b border-[#1E222B]/60 scroll-mt-20 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Section Header */}
                 <div className="flex items-center justify-between mb-8 sm:mb-12">
@@ -47,17 +47,17 @@ export function Experience() {
                             04
                         </span>
                         <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
-                            Industry Experience & Case Studies
+                            Industry Experience
                         </h2>
                     </div>
                     <span className="hidden sm:inline font-mono text-xs text-[#7E8492]">
-                        EVIDENCE // VERIFIED WORK
+                        INDUSTRY // VERIFIED ROLES
                     </span>
                 </div>
 
-                {/* Case Study Grid */}
+                {/* Experience Cards Grid */}
                 <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
-                    {caseStudies.map((item, idx) => {
+                    {experiences.map((item, idx) => {
                         const Icon = item.icon
                         return (
                             <motion.div

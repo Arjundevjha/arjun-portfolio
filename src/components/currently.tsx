@@ -16,7 +16,7 @@ const oLevelSubjects = [
 
 export function Currently() {
     return (
-        <section id="now" className="py-16 sm:py-20 border-b border-[#1E222B]/60 relative">
+        <section id="now" className="py-16 sm:py-20 border-b border-[#1E222B]/60 scroll-mt-20 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Section Header */}
                 <div className="flex items-center justify-between mb-8 sm:mb-12">
@@ -74,7 +74,7 @@ export function Currently() {
                                     H2 Mathematics
                                 </span>
                                 <span className="px-2.5 py-1 rounded-md bg-[#14171F] border border-[#1E222B] font-mono text-[11px] sm:text-xs text-[#F2F2F0]">
-                                    H1 Economics
+                                    H2 Economics
                                 </span>
                             </div>
                         </div>

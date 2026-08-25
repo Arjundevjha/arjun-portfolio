@@ -33,17 +33,16 @@ const timelineData: {
             },
             {
                 year: "2026",
-                title: "National Olympiad in Informatics (NOI)",
+                title: "National Olympiad in Informatics (NOI) — Participation",
                 category: "Competitive Programming",
-                description: "National algorithmic programming competition solving advanced graph theory and dynamic programming challenges.",
-                highlight: true,
+                description: "National algorithmic programming competition solving advanced graph theory and dynamic programming challenges. Certificate of Participation.",
                 images: ["/certificates/NOI-2026-cert-participation.png"],
             },
             {
                 year: "2026",
-                title: "Canadian Computing Competition (CCC)",
+                title: "Canadian Computing Competition (CCC) — Participation",
                 category: "Informatics",
-                description: "International competition administered by the University of Waterloo.",
+                description: "International competition administered by the University of Waterloo. Certificate of Participation.",
                 images: ["/certificates/CCC-2026-cert-participation.png"],
             },
         ],
@@ -70,9 +69,9 @@ const timelineData: {
             },
             {
                 year: "2025",
-                title: "Singapore Junior Chemistry Olympiad (SJChO)",
+                title: "Singapore Junior Chemistry Olympiad (SJChO) — Participation",
                 category: "Natural Sciences",
-                description: "Advanced theory and experimental problem solving.",
+                description: "Advanced theory and experimental problem solving. Certificate of Participation.",
                 images: ["/certificates/Singapore-Junior-Chemistry-Olympiad-participation-2025.png"],
             },
             {
@@ -107,9 +106,9 @@ const timelineData: {
         milestones: [
             {
                 year: "2024",
-                title: "World Robot Games (WRG) International Top 16",
+                title: "World Robot Games (WRG) International — Participation",
                 category: "Robotics",
-                description: "Autonomous robotics competition competing against international teams.",
+                description: "Autonomous robotics competition competing against international teams, achieving Top 16 in one of the competition events.",
                 highlight: true,
                 images: ["/certificates/WRG-cert-participation.png"],
             },
@@ -128,18 +127,26 @@ const timelineData: {
             },
             {
                 year: "2024",
-                title: "3D Printing Drone Airframe Competition",
+                title: "3D Printing Drone Airframe Competition — Participation",
                 category: "CAD & Prototyping",
-                description: "Custom CAD aerodynamic drone housing fabrication.",
+                description: "Custom CAD aerodynamic drone housing fabrication. Certificate of Participation.",
                 images: ["/certificates/3D Printing Drone Airfrae competition-cert-participation.png"],
             },
             {
                 year: "2024",
-                title: "Barclays Finance Club Programme & SMO Participation",
+                title: "Talent Development Programme in Mathematics (Barclays Bank)",
                 category: "Quantitative Math",
-                description: "Financial mathematics and quantitative thinking program.",
+                description: "Selected for the Nellie Mitchell Talent Development Programme in Mathematics from St. Hilda's Secondary School, participating in the Barclays Bank financial mathematics and quantitative thinking program.",
                 images: [
                     "/certificates/Nellie-Mittchell-talent-development-programme-mathematics-barclays-bank-2024.png",
+                ],
+            },
+            {
+                year: "2024",
+                title: "Singapore Mathematical Olympiad (SMO) Senior — Participation",
+                category: "Mathematics",
+                description: "Competed in the national Singapore Mathematical Olympiad (SMO) Senior category. Certificate of Participation.",
+                images: [
                     "/certificates/SMO-senior-participation-2024.png",
                 ],
             },
@@ -216,7 +223,7 @@ export function Journey() {
             : timelineData.filter((t) => t.year === selectedYear)
 
     return (
-        <section id="achievements" className="py-16 sm:py-24 border-b border-[#1E222B]/60 relative">
+        <section id="achievements" className="py-16 sm:py-24 border-b border-[#1E222B]/60 scroll-mt-20 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">

@@ -7,18 +7,66 @@ import { Menu, X, ArrowUpRight, Terminal, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navItems = [
-    { name: "Now", href: "#now" },
-    { name: "Work", href: "#work" },
-    { name: "Capabilities", href: "#capabilities" },
+    { name: "Home", href: "#home" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Achievements", href: "#achievements" },
     { name: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
-    const [activeSegment, setActiveSegment] = React.useState("now")
+    const [activeSegment, setActiveSegment] = React.useState("home")
     const [isScrolled, setIsScrolled] = React.useState(false)
     const [mobileOpen, setMobileOpen] = React.useState(false)
+    const isClickScrolling = React.useRef(false)
+    const scrollTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
+    // Clear legacy hash and ensure reloads always start at top of home page
+    React.useEffect(() => {
+        if (typeof window !== "undefined") {
+            if ("scrollRestoration" in window.history) {
+                window.history.scrollRestoration = "manual"
+            }
+            if (window.location.hash) {
+                window.history.replaceState(null, "", window.location.pathname)
+                window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+            }
+        }
+    }, [])
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault()
+        setMobileOpen(false)
+        const targetId = href.replace("#", "")
+        const element = document.getElementById(targetId)
+        if (element) {
+            // Lock scroll-spy listener during smooth panning to prevent highlight flickering
+            isClickScrolling.current = true
+            setActiveSegment(targetId)
+            if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+
+            element.scrollIntoView({ behavior: "smooth" })
+
+            scrollTimeoutRef.current = setTimeout(() => {
+                isClickScrolling.current = false
+            }, 850)
+        }
+    }
+
+    const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        setMobileOpen(false)
+        isClickScrolling.current = true
+        setActiveSegment("home")
+        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+
+        window.scrollTo({ top: 0, behavior: "smooth" })
+
+        scrollTimeoutRef.current = setTimeout(() => {
+            isClickScrolling.current = false
+        }, 850)
+    }
 
     React.useEffect(() => {
         if (mobileOpen) {
@@ -32,22 +80,75 @@ export function Navbar() {
     }, [mobileOpen])
 
     React.useEffect(() => {
-        const handleScroll = () => {
+        let ticking = false
+
+        const updateActiveSection = () => {
             setIsScrolled(window.scrollY > 30)
 
-            const sections = navItems.map((item) => item.href.substring(1))
-            let current = ""
-            for (const section of sections) {
-                const element = document.getElementById(section)
-                if (element && window.scrollY >= element.offsetTop - 220) {
-                    current = section
+            // If user clicked a navigation link, let the target lock stay active
+            if (isClickScrolling.current) {
+                ticking = false
+                return
+            }
+
+            const scrollPosition = window.innerHeight + window.scrollY
+            const documentHeight = document.documentElement.scrollHeight
+            
+            // Check if at the bottom of the page
+            if (scrollPosition >= documentHeight - 70) {
+                setActiveSegment("contact")
+                ticking = false
+                return
+            }
+
+            // Check if at the top of the page
+            if (window.scrollY < 150) {
+                setActiveSegment("home")
+                ticking = false
+                return
+            }
+
+            const navOffset = 90 // Space occupied by floating navbar
+            const viewportHeight = window.innerHeight
+
+            let maxCoverage = 0
+            let dominantSection = ""
+
+            for (const item of navItems) {
+                const sectionId = item.href.replace("#", "")
+                const element = document.getElementById(sectionId)
+                if (!element) continue
+
+                const rect = element.getBoundingClientRect()
+                const visibleTop = Math.max(navOffset, rect.top)
+                const visibleBottom = Math.min(viewportHeight, rect.bottom)
+                const visibleHeight = Math.max(0, visibleBottom - visibleTop)
+
+                if (visibleHeight > maxCoverage) {
+                    maxCoverage = visibleHeight
+                    dominantSection = sectionId
                 }
             }
-            if (current) setActiveSegment(current)
+
+            if (dominantSection) {
+                setActiveSegment(dominantSection)
+            }
+            ticking = false
         }
+
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateActiveSection)
+                ticking = true
+            }
+        }
+
         window.addEventListener("scroll", handleScroll, { passive: true })
-        handleScroll()
-        return () => window.removeEventListener("scroll", handleScroll)
+        updateActiveSection()
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+            if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+        }
     }, [])
 
     return (
@@ -79,7 +180,7 @@ export function Navbar() {
                     {/* Logo & Identity */}
                     <Link
                         href="#home"
-                        onClick={() => setMobileOpen(false)}
+                        onClick={handleLogoClick}
                         className="flex items-center gap-2 group font-mono text-sm tracking-tight text-[#F2F2F0] hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1"
                     >
                         <span className="flex h-2 w-2 relative">
@@ -100,11 +201,12 @@ export function Navbar() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
+                                    onClick={(e) => handleNavClick(e, item.href)}
                                     className={cn(
                                         "px-3 py-1 text-xs font-mono tracking-wide rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                                         isActive
                                             ? "text-primary bg-primary/10 font-semibold border border-primary/20"
-                                             : "text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5"
+                                            : "text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5"
                                     )}
                                 >
                                     {item.name}
@@ -157,7 +259,7 @@ export function Navbar() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        onClick={() => setMobileOpen(false)}
+                                        onClick={(e) => handleNavClick(e, item.href)}
                                         className={cn(
                                             "min-h-[44px] px-3.5 py-2.5 text-sm font-mono rounded-xl transition-all flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                                             isActive

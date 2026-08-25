@@ -125,16 +125,16 @@ export function Projects() {
     }
 
     return (
-        <section id="work" className="py-16 sm:py-24 border-b border-[#1E222B]/60">
+        <section id="projects" className="py-16 sm:py-24 border-b border-[#1E222B]/60 scroll-mt-20">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Section Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
                     <div className="flex items-center gap-2.5 sm:gap-3">
                         <span className="font-mono text-xs text-primary font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                            02
+                            03
                         </span>
                         <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
-                            Selected Work & Systems
+                            Projects
                         </h2>
                     </div>
 
