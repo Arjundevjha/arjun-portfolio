@@ -202,7 +202,6 @@ export function Journey() {
     const [modalOpen, setModalOpen] = useState(false)
     const [modalImages, setModalImages] = useState<string[]>([])
     const [modalTitle, setModalTitle] = useState("")
-    const [expandedArchive, setExpandedArchive] = useState(false)
 
     const handleViewCert = (item: Milestone) => {
         if (!item.images || item.images.length === 0) return
@@ -217,29 +216,29 @@ export function Journey() {
             : timelineData.filter((t) => t.year === selectedYear)
 
     return (
-        <section id="achievements" className="py-24 border-b border-[#1E222B]/60 relative">
+        <section id="achievements" className="py-16 sm:py-24 border-b border-[#1E222B]/60 relative">
             <div className="container px-4 mx-auto max-w-5xl">
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
-                    <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
                         <span className="font-mono text-xs text-primary font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
                             05
                         </span>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
+                        <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-[#F2F2F0]">
                             Achievements
                         </h2>
                     </div>
 
                     {/* Quick Year Filters with Touch-Friendly Hitboxes */}
-                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#0F1115] border border-[#1E222B] overflow-x-auto max-w-full">
+                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#0F1115] border border-[#1E222B] overflow-x-auto no-scrollbar max-w-full">
                         {["ALL", "2026", "2025", "2024", "2023", "2022"].map((yr) => (
                             <button
                                 key={yr}
                                 onClick={() => setSelectedYear(yr)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all shrink-0 min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                                     selectedYear === yr
                                         ? "bg-primary text-[#08090A] font-bold shadow-sm"
-                                        : "text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5"
+                                        : "text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5 active:bg-white/10"
                                 }`}
                             >
                                 {yr}
@@ -248,8 +247,8 @@ export function Journey() {
                     </div>
                 </div>
 
-                {/* Timeline Flow */}
-                <div className="space-y-12 relative border-l border-[#1E222B] ml-4 sm:ml-6 pl-6 sm:pl-8">
+                {/* Timeline Flow with Centered Markers */}
+                <div className="space-y-10 sm:space-y-12 relative border-l border-[#1E222B] ml-3 sm:ml-6 pl-6 sm:pl-8">
                     {filteredTimeline.map((block, bIdx) => (
                         <motion.div
                             key={block.year}
@@ -259,20 +258,20 @@ export function Journey() {
                             transition={{ duration: 0.4, delay: bIdx * 0.1 }}
                             className="relative"
                         >
-                            {/* Marker */}
-                            <div className="absolute -left-[31px] sm:-left-[39px] top-0.5 h-6 w-6 rounded-full bg-[#08090A] border-2 border-primary flex items-center justify-center shadow-[0_0_12px_rgba(183,255,60,0.4)]">
+                            {/* Mathematically Centered Marker */}
+                            <div className="absolute -left-6 sm:-left-8 -translate-x-1/2 top-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-[#08090A] border-2 border-primary flex items-center justify-center shadow-[0_0_12px_rgba(183,255,60,0.4)]">
                                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                             </div>
 
                             {/* Year Header */}
-                            <div className="mb-6">
-                                <h3 className="text-2xl sm:text-3xl font-mono font-black text-[#F2F2F0]">
+                            <div className="mb-4 sm:mb-6">
+                                <h3 className="text-xl sm:text-3xl font-mono font-black text-[#F2F2F0]">
                                     {block.year}
                                 </h3>
                             </div>
 
                             {/* Milestones in this year */}
-                            <div className="grid sm:grid-cols-2 gap-4">
+                            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                                 {block.milestones.map((item, mIdx) => {
                                     const hasCert = item.images && item.images.length > 0
                                     return (
@@ -288,26 +287,26 @@ export function Journey() {
                                                 }
                                             }}
                                             onClick={() => hasCert && handleViewCert(item)}
-                                            className={`bg-[#0F1115] border border-[#1E222B] p-5 rounded-xl flex flex-col justify-between transition-all text-left ${
+                                            className={`bg-[#0F1115] border border-[#1E222B] p-4 sm:p-5 rounded-xl flex flex-col justify-between transition-all text-left ${
                                                 hasCert
-                                                    ? "cursor-pointer hover:border-primary/50 hover:bg-[#14171F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary group"
+                                                    ? "cursor-pointer hover:border-primary/50 hover:bg-[#14171F] active:bg-[#14171F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary group"
                                                     : ""
                                             } ${item.highlight ? "ring-1 ring-primary/20" : ""}`}
                                         >
                                             <div>
-                                                <div className="flex items-center justify-between mb-2">
+                                                <div className="flex items-center justify-between gap-2 mb-2 flex-wrap xs:flex-nowrap">
                                                     <span className="font-mono text-[10px] text-[#7E8492] uppercase">
                                                         {item.category}
                                                     </span>
                                                     {hasCert && (
-                                                        <span className="font-mono text-[10px] text-primary group-hover:underline flex items-center gap-1">
+                                                        <span className="font-mono text-[10px] text-primary group-hover:underline flex items-center gap-1 shrink-0">
                                                             <ImageIcon className="w-3 h-3" />
                                                             <span>VERIFY CERT ↗</span>
                                                         </span>
                                                     )}
                                                 </div>
 
-                                                <h4 className="text-sm sm:text-base font-bold text-[#F2F2F0] group-hover:text-primary transition-colors mb-2">
+                                                <h4 className="text-sm sm:text-base font-bold text-[#F2F2F0] group-hover:text-primary transition-colors mb-1.5 sm:mb-2">
                                                     {item.title}
                                                 </h4>
 

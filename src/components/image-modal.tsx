@@ -14,6 +14,7 @@ interface ImageModalProps {
 
 export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [touchStartX, setTouchStartX] = useState<number | null>(null)
 
     const handlePrev = useCallback(() => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -22,6 +23,23 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
     const handleNext = useCallback(() => {
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
     }, [images.length])
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setTouchStartX(e.touches[0].clientX)
+    }
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartX === null || images.length <= 1) return
+        const touchEndX = e.changedTouches[0].clientX
+        const diffX = touchStartX - touchEndX
+
+        if (diffX > 50) {
+            handleNext()
+        } else if (diffX < -50) {
+            handlePrev()
+        }
+        setTouchStartX(null)
+    }
 
     useEffect(() => {
         if (!isOpen) {
@@ -52,7 +70,7 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+                    className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6"
                     onClick={onClose}
                 >
                     {/* Backdrop */}
@@ -64,21 +82,21 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="relative max-w-4xl w-full max-h-[90vh] bg-[#0F1115] border border-[#1E222B] rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-[0_24px_64px_rgba(0,0,0,0.9)] z-10"
+                        className="relative max-w-4xl w-full max-h-[94vh] sm:max-h-[90vh] bg-[#0F1115] border border-[#1E222B] rounded-2xl p-3 sm:p-6 flex flex-col items-center shadow-[0_24px_64px_rgba(0,0,0,0.9)] z-10"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header Bar */}
-                        <div className="w-full flex items-center justify-between pb-3.5 mb-3 border-b border-[#1E222B]">
+                        <div className="w-full flex items-center justify-between pb-2.5 sm:pb-3.5 mb-2.5 sm:mb-3 border-b border-[#1E222B]">
                             <div className="flex items-center gap-2 font-mono text-xs text-[#8A8F98]">
-                                <Terminal className="w-3.5 h-3.5 text-primary" />
-                                <span className="text-[#F2F2F0] font-medium truncate max-w-[260px] sm:max-w-md">
+                                <Terminal className="w-3.5 h-3.5 text-primary shrink-0" />
+                                <span className="text-[#F2F2F0] font-medium truncate max-w-[200px] xs:max-w-[280px] sm:max-w-md">
                                     {title}
                                 </span>
                             </div>
 
                             <button
                                 onClick={onClose}
-                                className="p-1.5 rounded-lg text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                className="h-10 w-10 flex items-center justify-center rounded-lg text-[#8A8F98] hover:text-[#F2F2F0] hover:bg-white/5 active:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                 aria-label="Close modal"
                             >
                                 <X className="w-5 h-5" />
@@ -86,18 +104,22 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                         </div>
 
                         {/* Image Viewer Container with Inner Matte Frame */}
-                        <div className="relative w-full flex items-center justify-center min-h-[280px] max-h-[68vh] p-1 sm:p-2 rounded-xl bg-[#14171F] border border-[#1E222B]">
+                        <div
+                            onTouchStart={handleTouchStart}
+                            onTouchEnd={handleTouchEnd}
+                            className="relative w-full flex items-center justify-center min-h-[220px] sm:min-h-[280px] max-h-[60vh] sm:max-h-[68vh] p-1 sm:p-2 rounded-xl bg-[#14171F] border border-[#1E222B] touch-pan-y"
+                        >
                             {images.length > 1 && (
                                 <button
                                     onClick={handlePrev}
-                                    className="absolute left-3 z-30 bg-[#08090A]/90 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full p-2.5 transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                    className="absolute left-2 sm:left-3 z-30 bg-[#08090A]/90 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full h-10 w-10 flex items-center justify-center transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                     aria-label="Previous artifact"
                                 >
                                     <ChevronLeft className="w-5 h-5" />
                                 </button>
                             )}
 
-                            <div className="relative w-full aspect-[4/3] max-h-[64vh] rounded-lg overflow-hidden flex items-center justify-center">
+                            <div className="relative w-full aspect-[4/3] max-h-[58vh] sm:max-h-[64vh] rounded-lg overflow-hidden flex items-center justify-center">
                                 <Image
                                     src={images[currentIndex]}
                                     alt={`${title} - view ${currentIndex + 1}`}
@@ -111,7 +133,7 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                             {images.length > 1 && (
                                 <button
                                     onClick={handleNext}
-                                    className="absolute right-3 z-30 bg-[#08090A]/90 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full p-2.5 transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                    className="absolute right-2 sm:right-3 z-30 bg-[#08090A]/90 hover:bg-primary hover:text-[#08090A] border border-[#1E222B] text-[#F2F2F0] rounded-full h-10 w-10 flex items-center justify-center transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                     aria-label="Next artifact"
                                 >
                                     <ChevronRight className="w-5 h-5" />
@@ -120,7 +142,7 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                         </div>
 
                         {/* Footer Indicator & Pagination */}
-                        <div className="w-full flex items-center justify-between pt-3 mt-2 border-t border-[#1E222B]/60 font-mono text-xs text-[#7E8492]">
+                        <div className="w-full flex items-center justify-between pt-2.5 sm:pt-3 mt-2 border-t border-[#1E222B]/60 font-mono text-[11px] sm:text-xs text-[#7E8492]">
                             <div className="hidden sm:block">
                                 KEYBOARD NAV: [ESC] CLOSE · [← / →] PREV/NEXT
                             </div>
@@ -131,10 +153,10 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                                         <button
                                             key={idx}
                                             onClick={() => setCurrentIndex(idx)}
-                                            className={`h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary ${
+                                            className={`h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary ${
                                                 idx === currentIndex
-                                                    ? "bg-primary w-5"
-                                                    : "bg-[#1E222B] hover:bg-[#8A8F98] w-2"
+                                                    ? "bg-primary w-6"
+                                                    : "bg-[#1E222B] hover:bg-[#8A8F98] w-2.5"
                                             }`}
                                             aria-label={`Go to slide ${idx + 1}`}
                                         />
@@ -142,7 +164,7 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                                 </div>
                             )}
 
-                            <div>
+                            <div className="ml-auto sm:ml-0 font-bold">
                                 {currentIndex + 1} / {images.length}
                             </div>
                         </div>

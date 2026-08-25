@@ -6,11 +6,26 @@
   .text-balance {
     text-wrap: balance;
   }
-}
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @layer base {
