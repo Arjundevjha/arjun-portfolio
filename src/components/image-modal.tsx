@@ -10,11 +10,19 @@ interface ImageModalProps {
     title: string
     isOpen: boolean
     onClose: () => void
+    captions?: string[]
+    initialIndex?: number
 }
 
-export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) {
-    const [currentIndex, setCurrentIndex] = useState(0)
+export function ImageModal({ images, title, isOpen, onClose, captions, initialIndex = 0 }: ImageModalProps) {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex)
     const [touchStartX, setTouchStartX] = useState<number | null>(null)
+
+    useEffect(() => {
+        if (isOpen) {
+            setCurrentIndex(initialIndex)
+        }
+    }, [isOpen, initialIndex])
 
     const handlePrev = useCallback(() => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -43,7 +51,6 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
 
     useEffect(() => {
         if (!isOpen) {
-            setCurrentIndex(0)
             return
         }
 
@@ -119,15 +126,27 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                                 </button>
                             )}
 
-                            <div className="relative w-full aspect-[4/3] max-h-[58vh] sm:max-h-[64vh] rounded-lg overflow-hidden flex items-center justify-center">
-                                <Image
-                                    src={images[currentIndex]}
-                                    alt={`${title} - view ${currentIndex + 1}`}
-                                    fill
-                                    className="object-contain rounded-lg"
-                                    sizes="(max-width: 768px) 100vw, 850px"
-                                    priority
-                                />
+                            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] max-h-[58vh] sm:max-h-[64vh] rounded-lg overflow-hidden flex items-center justify-center bg-black/40">
+                                {images[currentIndex]?.endsWith(".mp4") ? (
+                                    <video
+                                        key={images[currentIndex]}
+                                        src={images[currentIndex]}
+                                        controls
+                                        autoPlay
+                                        playsInline
+                                        className="w-full h-full max-h-[58vh] sm:max-h-[64vh] object-contain rounded-lg"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={images[currentIndex]}
+                                        alt={`${title} - view ${currentIndex + 1}`}
+                                        fill
+                                        unoptimized={images[currentIndex]?.startsWith("http")}
+                                        className="object-contain rounded-lg"
+                                        sizes="(max-width: 768px) 100vw, 850px"
+                                        priority
+                                    />
+                                )}
                             </div>
 
                             {images.length > 1 && (
@@ -140,6 +159,13 @@ export function ImageModal({ images, title, isOpen, onClose }: ImageModalProps) 
                                 </button>
                             )}
                         </div>
+
+                        {/* Curatorial Caption */}
+                        {captions && captions[currentIndex] && (
+                            <div className="w-full text-center px-3 py-1.5 font-mono text-[11px] sm:text-xs text-primary/90 bg-primary/5 border border-primary/20 rounded-lg mt-2">
+                                {captions[currentIndex]}
+                            </div>
+                        )}
 
                         {/* Footer Indicator & Pagination */}
                         <div className="w-full flex items-center justify-between pt-2.5 sm:pt-3 mt-2 border-t border-[#1E222B]/60 font-mono text-[11px] sm:text-xs text-[#7E8492]">

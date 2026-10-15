@@ -1,39 +1,49 @@
 # Session Handoff Document
 
 ## 1. Executive Summary
-- **Mobile Responsiveness & Touch UX Enhancement Completed**:
-  - **Global Viewport & Styles** ([`src/app/layout.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/app/layout.tsx), [`src/app/globals.css`](file:///Users/abc/Desktop/arjun-portfolio/src/app/globals.css)): Exported explicit Next.js `Viewport` object (`width: device-width`, `initialScale: 1`, `maximumScale: 5`, `themeColor: #08090A`). Added `.no-scrollbar`, smooth touch scrolling, `-webkit-tap-highlight-color: transparent`, and `overflow-x: clip` to eliminate side wobble.
-  - **Mobile Navigation & Dominant Viewport Scroll Spy** ([`src/components/navbar.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/navbar.tsx)):
-    - Implemented a dominant viewport coverage algorithm (`Math.max(0, min(viewportBottom, rect.bottom) - max(navOffset, rect.top))`) to reliably detect sections of varying heights (including `Projects`) without single-point knife-edge boundaries.
-    - Added `scroll-mt-20` to all sections (`#now`, `#skills`, `#projects`, `#experience`, `#achievements`, `#contact`) to ensure perfect spacing below the fixed navbar.
-    - Added click-locking during smooth scrolling to prevent pill flickering across intermediate sections.
-  - **Skills Section** ([`src/components/capabilities.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/capabilities.tsx), [`src/components/navbar.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/navbar.tsx)): Renamed "Capabilities" section and navigation link to **Skills** (`#skills`).
-  - **Hero Section** ([`src/components/hero.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/hero.tsx)): Updated headline tagline to *"Whatever knowledge I have, belongs to the world."* Implemented fluid responsive typography (`text-3xl xs:text-4xl sm:text-6xl md:text-7xl`), dynamic viewport height (`min-h-[90dvh]`), and full-width touch-optimized CTA buttons on mobile.
-  - **Currently & Academic Foundation** ([`src/components/currently.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/currently.tsx)): Refactored GCE O-Level subject grid to `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4` to eliminate subject name truncation on mobile; improved score badge wrapping, adjusted card padding, and confirmed JC1 PCME coursework as 4 H2 subjects (`H2 Physics`, `H2 Chemistry`, `H2 Mathematics`, `H2 Economics`).
-  - **Selected Work & Filters** ([`src/components/projects.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/projects.tsx)): Replaced static filter pills with a smooth horizontally swipeable tab bar on mobile; optimized featured project visual container and dual action buttons.
-  - **Skills & Experience** ([`src/components/capabilities.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/capabilities.tsx), [`src/components/experience.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/experience.tsx)): Added responsive padding (`p-5 sm:p-7`), mobile stacking for role metadata, and responsive quote typography.
-  - **Achievements & Timeline Updates** ([`src/components/journey.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/journey.tsx)):
-    - Explicitly designated participation milestones: **NOI 2026** (Participation), **CCC 2026** (Participation), **SJChO 2025** (Participation), **3D Printing Drone Competition 2024** (Participation), **SMO Senior 2024** (Participation), and **WRG International 2024** (Participation, with Top 16 in competition event highlighted in description).
-    - Separated 2024 entries: **Talent Development Programme in Mathematics (Barclays Bank)** via St. Hilda's Secondary School and **Singapore Mathematical Olympiad (SMO) Senior — Participation** are now distinct milestone cards.
-  - **Certificate Modal** ([`src/components/image-modal.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/image-modal.tsx)): Added touch swipe gesture navigation (`onTouchStart`/`onTouchEnd`), safe area padding, and 44px hitboxes for close and arrow controls.
-  - **Connect & Footer** ([`src/components/footer.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/footer.tsx)): Structured action links into a clean mobile button grid with full-width tap targets, text truncation to prevent 320px screen overflow, and centered metadata alignment.
+- **Flagship Project Re-Architecture & Cryptography Elevation Completed**:
+  - **Star Project Promotion** ([`src/components/projects.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/projects.tsx)):
+    - Promoted **Cryptography Museum & Algorithmic Engine** to Project `01` (`featured: true`) under `SECURITY`.
+    - Repositioned **SL Symposium Chatbot** to Project `02` (`featured: false`) under `AI & ML` within the editorial project grid.
+    - Updated dynamic category filtering so the featured card displays under `ALL` and `SECURITY`, without duplicating cards in the grid below.
+  - **Interactive Architecture & 3D Museum Showcase Frame** ([`src/components/projects.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/projects.tsx)):
+    - Added an embedded tabbed showcase switcher right on the featured project card:
+      1. **Architecture Diagram Tab**: Renders the physical GitDiagram system architecture flowchart with AST mapping, zoom inspection modal, and direct links to live interactive GitDiagram.
+      2. **3D Museum Photos Tab**: Interactive photo slideshow cycling through 6 high-resolution 3D WebGL museum exhibits (Grand Entrance Rotunda & Statues, 3D Enigma Rotor Workbench, Modern RSA Vault Prime Rings, Classical Ciphers Wing, Historical Systems Wing, and 2D Blueprint Floorplan Map) with prev/next controls, index counter, and click-to-expand modal integration.
+    - **Video Removal**: Per user request ("remove the video"), all video components, inline HTML5 video players, video tour tabs, and video references were cleanly excised.
+  - **Enhanced Image Modal Component** ([`src/components/image-modal.tsx`](file:///Users/abc/Desktop/arjun-portfolio/src/components/image-modal.tsx)):
+    - Curatorial exhibit annotations (`captions?: string[]`) for all media items.
+    - Synchronized modal launch (`initialIndex?: number`) aligned with the active gallery slide.
+    - `unoptimized` remote CDN asset handling for fast loading and zero Vercel image quota strain.
+  - **Next.js CDN Configuration & Hygiene** ([`next.config.mjs`](file:///Users/abc/Desktop/arjun-portfolio/next.config.mjs)):
+    - Configured `images.remotePatterns` for `github.com`, `*.githubusercontent.com`, `release-assets.githubusercontent.com`, and `opengraph.githubassets.com`.
+    - Configured `outputFileTracingExcludes` to prevent static assets from bundling into serverless runtimes.
+  - **Dedicated Project Asset Organization**:
+    - Created dedicated media directory at [`public/projects/cryptography/`](file:///Users/abc/Desktop/arjun-portfolio/public/projects/cryptography/).
+    - Labeled user-provided diagram as `cryptography-architecture-diagram.png` (high-resolution GitDiagram architecture export).
+    - Preserved local folder in `.gitignore` to uphold the Zero Static Binary Asset Commits rule.
+    - Synchronized `cryptography-architecture-diagram.png` to GitHub Release [`v1.0.0-assets`](https://github.com/Arjundevjha/Cryptography/releases/tag/v1.0.0-assets) for global CDN delivery.
 
 ---
 
 ## 2. Active State of Codebase
-- **Sections Flow & Navigation**:
-  1. `Home` (00) — `#home`
-  2. `Currently & Academic Foundation` (01) — `#now`
-  3. `Skills` (02) — `#skills`
-  4. `Projects` (03) — `#projects`
-  5. `Industry Experience` (04) — `#experience`
-  6. `Achievements` (05) — `#achievements`
-  7. `Connect & Collaborate` (06) — `#contact`
-- **Build Status**: `npm run build` passing with 0 errors (static page generation 4/4).
-- **TypeScript**: `npx tsc --noEmit` passing with 0 errors.
-- **Responsiveness**: Verified across 320px (iPhone SE 1st gen), 375px/390px (iPhone standard), 412px (Android), 768px (iPad/Tablet), and 1024px+ (Desktop).
+- **Featured Project**: `Cryptography Museum & Algorithmic Engine` (`featured: true`, category: `SECURITY`).
+- **Showcase Capabilities**: Embedded GitDiagram physical architecture diagram tab, 6-slide 3D museum photo gallery tab with carousel controls, and full-screen modal inspection.
+- **Projects Grid**: `SL Symposium Chatbot` (02), `Sentinel Cyber Sports Day CTF` (03), `Full Stack Product Tool` (04), `MIT Machine Learning Practicals` (05), `Hawker Centre Finder` (06), `Mathematics & Algorithmic Archive` (07).
+- **TypeScript**: `npx tsc --noEmit` passing cleanly (0 errors).
+- **Build Status**: `npm run build` passing cleanly with 4/4 static routes generated.
+- **Pending Input**: Ready to ingest additional museum photos or project media as the user drops them into the project.
 
 ---
 
-## 3. Immediate Next Steps
-- Production deployment / preview validation on live mobile hardware.
+## 3. Key Technical Decisions
+1. **Physical Architecture Visibility**: The actual GitDiagram AST architecture diagram is rendered directly inside the project card viewport, allowing visitors to immediately inspect system boundaries, FastAPI endpoints, Three.js canvas, and Python cipher engines.
+2. **Video Removal & Streamlined Dual-Mode Showcase**: Replaced initial video player with a streamlined two-mode switch (`Architecture Diagram` vs `3D Museum Photos`), keeping focus on high-clarity architectural artifacts and interactive WebGL renders.
+3. **External Global CDN Hosting**: Deployed all visual assets to GitHub release `v1.0.0-assets` on the Cryptography repository to avoid committing binary assets to Git history while keeping local copies in `public/projects/cryptography/` for organization.
+
+---
+
+## 4. Immediate Next Steps
+- Receive any additional photos or diagrams from the user.
+- Label and organize new assets in [`public/projects/cryptography/`](file:///Users/abc/Desktop/arjun-portfolio/public/projects/cryptography/).
+- Upload to release CDN and integrate into the carousel and modal galleries.
